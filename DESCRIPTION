@@ -1,0 +1,14 @@
+Package: rindex
+Type: Package
+Title: Refractive Index Database
+Version: 0.1.0
+Author: Tom Constant
+Maintainer: Tom Constant <t.j.constant@somewhere.net>
+Description: Uses the refractiveindex.info database to provide frequency dependent refractive indices for a large number of materials.
+    Each material is listed with the refractive index and extinction coefficent, such that index = n +i*k
+License: What license is it under?
+Encoding: UTF-8
+LazyData: false
+RoxygenNote: 5.0.1
+Imports:
+    RSQLite
