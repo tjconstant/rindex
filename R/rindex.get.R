@@ -13,7 +13,8 @@ rindex.get <- function(pageid) {
   result <- read.index_file(pageid)
 
   message(paste("Material: ", result$material, sep = ""))
-  message(paste("Source: ", result$source, sep = ""))
+  #message(paste("Source: ", result$source, sep = ""))
+  message(paste("Reference: ", result$reference, sep = ""))
 
   return(result$data)
 }
