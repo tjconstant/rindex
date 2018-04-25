@@ -20,7 +20,6 @@ install_database <- function(){
 load_database <-function(){
 
   database_index <- system.file("extdata/refractiveindex.info-database-master/database/library.yml",package = "rindex")
-
   con <- file(database_index, open = "rb", encoding = "UTF-8")
   db <- yaml::yaml.load(readLines(con))
   close(con)
@@ -34,8 +33,6 @@ load_database <-function(){
 
 }
 
-db_df <- load_database()
-
 read.index_file <- function(pageid){
   lookup <- db_df$data[db_df$pageid == pageid]
 
@@ -46,11 +43,13 @@ read.index_file <- function(pageid){
   names(data) <- c("wavelength (m)", "n", "k")
   data$`wavelength (m)` <- data$`wavelength (m)` * 1e-6
 
-  list(data = data,
+  list(material = db_df$BOOK[db_df$pageid == pageid],
+       data = data,
        `minimum wavelength (m)`= min(data$`wavelength (m)`),
        `maximum wavelength (m)`= max(data$`wavelength (m)`),
        reference = x.raw$REFERENCES,
-       comments = x.raw$COMMENTS)
+       comments = x.raw$COMMENTS,
+       source = db_df$PAGE[db_df$pageid == pageid])
 }
 
 

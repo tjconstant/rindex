@@ -7,4 +7,6 @@
     install_database()
   }
 
+  db_df <<- load_database()
+
 }
