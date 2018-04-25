@@ -10,7 +10,7 @@ rindex.get(pageid)
 \item{pageid}{The material pageid from rindex.search}
 }
 \value{
-returns a dataframe with the wavelength dependent n and k values
+returns a dataframe with the wavelength (in meters) dependent n and k values
 }
 \description{
 Retrieve a material's refractive index from the database
@@ -19,4 +19,3 @@ Retrieve a material's refractive index from the database
 
 rindex.get(0)
 }
-

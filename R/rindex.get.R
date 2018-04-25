@@ -2,13 +2,14 @@
 #'
 #' @param pageid The material pageid from rindex.search
 #'
-#' @return returns a dataframe with the wavelength dependent n and k values
+#' @return returns a dataframe with the wavelength (in meters) dependent n and k values
 #' @export
 #'
 #' @examples
 #'
 #' rindex.get(0)
 rindex.get <- function(pageid) {
+
   con <- RSQLite::dbConnect(drv = RSQLite::SQLite(), dbname = system.file("extdata", "refractive.db", package = "rindex"))
 
   result <-
@@ -30,7 +31,7 @@ rindex.get <- function(pageid) {
   message(paste("Source: ", result$page, sep = ""))
 
   return(data.frame(
-    wavelength = n$wave,
+    wavelength = n$wave * 1e-6, # convert to meters
     n = n$refindex,
     k = k$coeff
   ))

@@ -10,7 +10,7 @@ rindex.function(pageid)
 \item{pageid}{The material pageid from rindex.search}
 }
 \value{
-A list containing a function for n, k and the orginal dataset
+A function that will return the complex refractive index(s), given the wavelength(s) in meters
 }
 \description{
 Interpolated Refractive Function
@@ -18,17 +18,11 @@ Interpolated Refractive Function
 \examples{
 rindex.search("Ag")
 
+Ag_data <- rindex.get(0)
 Ag <- rindex.function(0)
 
-wavelength <- seq(0.25,0.8,,500)
+wavelengths <- seq(210,12300,, 1000) * 1e-9
 
-# Interpolated Functions
-plot(wavelength,Ag$n(wavelength), type='l', ylim=c(0,5.5), xlab=expression(wavelength~(mu*m)), ylab="refractive index n/k", lwd=3)
-lines(wavelength,Ag$k(wavelength), col=2, lwd=3)
-# Actual Data Points
-points(Ag$data$wavelength, Ag$data$n)
-points(Ag$data$wavelength, Ag$data$k, col=2)
-title("Silver (Ag)")
-legend(0.25,5,c("n","k"), col=1:2, lwd=3)
+plot(Ag_data$wavelength, Ag_data$n, log="x",  xlab = "wavelength (m) - log scale", ylab = "n")
+lines(wavelengths, Re(Ag(wavelengths)), col = 2, lwd = 2)
 }
-
