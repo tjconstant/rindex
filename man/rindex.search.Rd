@@ -16,6 +16,6 @@ Dataframe of matched materials.
 Search the Refractive Index Materials Database
 }
 \examples{
+rindex.search("Ag")
 
 }
-

@@ -1,0 +1,68 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+# rindex
+
+The goal of rindex is to provide access to the fantastic refractive index database provided by http://refractiveindex.info inside R. All user-provided wavelengths must be given in meters.
+
+## Installation
+
+You can install rindex from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("tjconstant/rindex")
+```
+
+## Example
+
+### Searching for a refractive index dataset
+
+```{r search}
+library(rindex)
+
+head(rindex.search("Ag"))
+```
+
+### Retreiving a dataset
+
+Retrieving a dataset is done using the `rindex.get()` function. You must specify the unique `pageid` as found in the search table.
+
+```{r get}
+head(rindex.get(pageid = 1))
+```
+
+### Interpolation Functions
+
+You can generate a spline-fit for any dataset using `rindex.function()`. For example, to get the interpolated refractive index of gold at 633 nm,
+
+```{r}
+Ag <- rindex.function(0)
+Ag(633e-9)
+```
+
+A comparison of dataset to spline-function is shown below.
+
+```{r}
+Ag_data <- rindex.get(0)
+wavelengths <- seq(210,12300,, 1000) * 1e-9
+
+plot(Ag_data$wavelength, Ag_data$n, 
+     log="x",  
+     xlab = "wavelength (m) - log scale", 
+     ylab = "n",
+     main = "Refractive Index of Gold (Real part)")
+lines(wavelengths, Re(Ag(wavelengths)), col = 2, lwd = 2)
+
+```
