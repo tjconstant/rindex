@@ -11,7 +11,8 @@ LazyData: false
 RoxygenNote: 6.0.1
 Imports:
     data.tree,
-    yaml
+    yaml,
+    tidyr
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

@@ -17,7 +17,7 @@ install_database <- function(){
 
 #install_database()
 
-load_database <-function(){
+load_database <- function(){
 
   database_index <- system.file("extdata/refractiveindex.info-database-master/database/library.yml",package = "rindex")
   con <- file(database_index, open = "rb", encoding = "UTF-8")
@@ -26,7 +26,10 @@ load_database <-function(){
 
   db_tree <- data.tree::as.Node(db)
 
-  db_df <- data.tree::ToDataFrameTable(db_tree, "SHELF", "BOOK", "name", "PAGE", "data")
+  db_df <- data.tree::ToDataFrameTable(db_tree, "SHELF", "DIVIDER","BOOK", "name", "PAGE", "data")
+  db_df <- db_df[!grepl(pattern = "Experimental",x = db_df$DIVIDER),]
+  db_df <- db_df[!grepl(pattern = "Models and",x = db_df$DIVIDER),]
+  db_df <- tidyr::fill(db_df,DIVIDER)
   db_df <- db_df[!is.na(db_df$data),]
   db_df <- data.frame(pageid = 1:length(db_df$SHELF), db_df)
 

@@ -10,7 +10,7 @@
 #'
 rindex.search <- function(material) {
 
-  material_table <- db_df[agrep(pattern = material, x = db_df$BOOK),]
+  material_table <- db_df[agrep(pattern = material, x = db_df$DIVIDER),]
 
-  return(material_table[,1:4])
+  return(material_table[,c(1,3:5)])
 }
