@@ -17,13 +17,40 @@ install_database <- function(){
 
 #install_database()
 
-#database_index <- system.file("extdata/refractiveindex.info-database-master/database/library.yml",package = "rindex")
+load_database <-function(){
 
-#con <- file(database_index, open = "rb", encoding = "UTF-8")
-#db <- yaml::yaml.load(readLines(con))
-#close(con)
+  database_index <- system.file("extdata/refractiveindex.info-database-master/database/library.yml",package = "rindex")
 
-#db_tree <- data.tree::as.Node(db)
+  con <- file(database_index, open = "rb", encoding = "UTF-8")
+  db <- yaml::yaml.load(readLines(con))
+  close(con)
 
-#db_df <- data.tree::ToDataFrameTable(db_tree, "SHELF", "BOOK", "name", "PAGE", "data")
-#db_df <- data.frame(pageid = 1:length(db_df$SHELF), db_df)
+  db_tree <- data.tree::as.Node(db)
+
+  db_df <- data.tree::ToDataFrameTable(db_tree, "SHELF", "BOOK", "name", "PAGE", "data")
+  db_df <- data.frame(pageid = 1:length(db_df$SHELF), db_df)
+
+  return(db_df)
+
+}
+
+db_df <- load_database()
+
+read.index_file <- function(pageid){
+  lookup <- db_df$data[db_df$pageid == pageid]
+
+  x <- system.file(paste0("extdata/refractiveindex.info-database-master/database/data/",lookup),package = "rindex")
+  x.raw <- yaml::read_yaml(x)
+
+  data <- read.table(textConnection(x.raw$DATA[[1]]$data))
+  names(data) <- c("wavelength (m)", "n", "k")
+  data$`wavelength (m)` <- data$`wavelength (m)` * 1e-6
+
+  list(data = data,
+       `minimum wavelength (m)`= min(data$`wavelength (m)`),
+       `maximum wavelength (m)`= max(data$`wavelength (m)`),
+       reference = x.raw$REFERENCES,
+       comments = x.raw$COMMENTS)
+}
+
+
