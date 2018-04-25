@@ -29,7 +29,7 @@ load_database <-function(){
   db_df <- data.tree::ToDataFrameTable(db_tree, "SHELF", "BOOK", "name", "PAGE", "data")
   db_df <- data.frame(pageid = 1:length(db_df$SHELF), db_df)
 
-  return(db_df)
+  return(db_df[!is.na(db_df$data),])
 
 }
 
