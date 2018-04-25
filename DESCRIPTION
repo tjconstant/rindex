@@ -10,7 +10,9 @@ Encoding: UTF-8
 LazyData: false
 RoxygenNote: 6.0.1
 Imports:
-    RSQLite
+    RSQLite,
+    data.tree,
+    yaml
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
