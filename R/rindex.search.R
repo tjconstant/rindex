@@ -12,5 +12,5 @@ rindex.search <- function(material) {
 
   material_table <- db_df[agrep(pattern = material, x = db_df$DIVIDER),]
 
-  return(material_table[,c(1,3:5)])
+  return(material_table[,c(1,3,4,6)])
 }

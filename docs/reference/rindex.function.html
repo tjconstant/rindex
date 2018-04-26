@@ -116,56 +116,513 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='rindex.search.html'>rindex.search</a></span>(<span class='st'>"Ag"</span>)</div><div class='output co'>#&gt;    pageid shelf    book           page hasrefractive hasextinction
-#&gt; 1       0  main      Ag          Rakic             1             1
-#&gt; 2       1  main      Ag         McPeak             1             1
-#&gt; 3       2  main      Ag    Stahrenberg             1             1
-#&gt; 4       3  main      Ag          Babar             1             1
-#&gt; 5       4  main      Ag       Hagemann             1             1
-#&gt; 6       5  main      Ag        Johnson             1             1
-#&gt; 7       6  main      Ag          Windt             1             1
-#&gt; 8     351  main  AgGaS2         Boyd-o             1             0
-#&gt; 9     352  main  AgGaS2         Boyd-e             1             0
-#&gt; 10    391  main AgGaSe2         Boyd-o             1             0
-#&gt; 11    392  main AgGaSe2         Boyd-e             1             0
-#&gt; 12   1537 other   Au-Ag Rioux-Au100Ag0             1             1
-#&gt; 13   1538 other   Au-Ag Rioux-Au90Ag10             1             1
-#&gt; 14   1539 other   Au-Ag Rioux-Au80Ag20             1             1
-#&gt; 15   1540 other   Au-Ag Rioux-Au70Ag30             1             1
-#&gt; 16   1541 other   Au-Ag Rioux-Au60Ag40             1             1
-#&gt; 17   1542 other   Au-Ag Rioux-Au50Ag50             1             1
-#&gt; 18   1543 other   Au-Ag Rioux-Au40Ag60             1             1
-#&gt; 19   1544 other   Au-Ag Rioux-Au30Ag70             1             1
-#&gt; 20   1545 other   Au-Ag Rioux-Au20Ag80             1             1
-#&gt; 21   1546 other   Au-Ag Rioux-Au10Ag90             1             1
-#&gt; 22   1547 other   Au-Ag Rioux-Au0Ag100             1             1
-#&gt;    rangeMin (um) rangeMax (um) points
-#&gt; 1     0.20660000      12.40000    200
-#&gt; 2     0.30000000       1.70000    141
-#&gt; 3     0.12782000       0.49594    361
-#&gt; 4     0.20660000      12.40000     69
-#&gt; 5     0.00000248     248.00000    148
-#&gt; 6     0.18790000       1.93700     49
-#&gt; 7     0.00236000       0.12157     36
-#&gt; 8     0.49000000      12.00000    100
-#&gt; 9     0.49000000      12.00000    100
-#&gt; 10    0.72500000      13.50000    100
-#&gt; 11    0.72500000      13.50000    100
-#&gt; 12    0.27000000       1.20000    931
-#&gt; 13    0.27000000       1.20000    931
-#&gt; 14    0.27000000       1.20000    931
-#&gt; 15    0.27000000       1.20000    931
-#&gt; 16    0.27000000       1.20000    931
-#&gt; 17    0.27000000       1.20000    931
-#&gt; 18    0.27000000       1.20000    931
-#&gt; 19    0.27000000       1.20000    931
-#&gt; 20    0.27000000       1.20000    931
-#&gt; 21    0.27000000       1.20000    931
-#&gt; 22    0.27000000       1.20000    931</div><div class='input'>
-<span class='no'>Ag_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rindex.get.html'>rindex.get</a></span>(<span class='fl'>0</span>)</div><div class='output co'>#&gt; <span class='message'>Material: Ag</span></div><div class='output co'>#&gt; <span class='message'>Source: Rakic</span></div><div class='input'><span class='no'>Ag</span> <span class='kw'>&lt;-</span> <span class='fu'>rindex.function</span>(<span class='fl'>0</span>)</div><div class='output co'>#&gt; <span class='message'>Material: Ag</span></div><div class='output co'>#&gt; <span class='message'>Source: Rakic</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='rindex.search.html'>rindex.search</a></span>(<span class='st'>"Ag"</span>)</div><div class='output co'>#&gt;      pageid                           DIVIDER                         BOOK
+#&gt; 3         1                       Ag - Silver                           Ag
+#&gt; 4         2                       Ag - Silver                           Ag
+#&gt; 5         3                       Ag - Silver                           Ag
+#&gt; 6         4                       Ag - Silver                           Ag
+#&gt; 7         5                       Ag - Silver                           Ag
+#&gt; 8         6                       Ag - Silver                           Ag
+#&gt; 9         7                       Ag - Silver                           Ag
+#&gt; 10        8                       Ag - Silver                           Ag
+#&gt; 11        9                       Ag - Silver                           Ag
+#&gt; 13       10                       Ag - Silver                           Ag
+#&gt; 14       11                       Ag - Silver                           Ag
+#&gt; 15       12                       Ag - Silver                           Ag
+#&gt; 17       13                       Ag - Silver                           Ag
+#&gt; 18       14                       Ag - Silver                           Ag
+#&gt; 19       15                       Ag - Silver                           Ag
+#&gt; 22       16     Al - Aluminium and aluminates                           Al
+#&gt; 23       17     Al - Aluminium and aluminates                           Al
+#&gt; 24       18     Al - Aluminium and aluminates                           Al
+#&gt; 25       19     Al - Aluminium and aluminates                           Al
+#&gt; 26       20     Al - Aluminium and aluminates                           Al
+#&gt; 27       21     Al - Aluminium and aluminates                           Al
+#&gt; 29       22     Al - Aluminium and aluminates                           Al
+#&gt; 30       23     Al - Aluminium and aluminates                           Al
+#&gt; 31       24     Al - Aluminium and aluminates                      MgAl2O4
+#&gt; 32       25     Al - Aluminium and aluminates                     Y3Al5O12
+#&gt; 56       43                    As - Arsenides                         AlAs
+#&gt; 58       44                    As - Arsenides                         AlAs
+#&gt; 60       45                    As - Arsenides                         GaAs
+#&gt; 61       46                    As - Arsenides                         GaAs
+#&gt; 62       47                    As - Arsenides                         GaAs
+#&gt; 63       48                    As - Arsenides                         GaAs
+#&gt; 65       49                    As - Arsenides                         GaAs
+#&gt; 66       50                    As - Arsenides                         GaAs
+#&gt; 67       51                    As - Arsenides                         GaAs
+#&gt; 69       52                    As - Arsenides                         InAs
+#&gt; 70       53                    As - Arsenides                         InAs
+#&gt; 72       54                    As - Arsenides                         InAs
+#&gt; 73       55                    As - Arsenides                      CdGeAs2
+#&gt; 74       56                    As - Arsenides                      CdGeAs2
+#&gt; 75       57                    As - Arsenides                      ZnSiAs2
+#&gt; 76       58                    As - Arsenides                      ZnSiAs2
+#&gt; 79       59                         Au - Gold                           Au
+#&gt; 80       60                         Au - Gold                           Au
+#&gt; 81       61                         Au - Gold                           Au
+#&gt; 82       62                         Au - Gold                           Au
+#&gt; 83       63                         Au - Gold                           Au
+#&gt; 84       64                         Au - Gold                           Au
+#&gt; 85       65                         Au - Gold                           Au
+#&gt; 86       66                         Au - Gold                           Au
+#&gt; 87       67                         Au - Gold                           Au
+#&gt; 88       68                         Au - Gold                           Au
+#&gt; 89       69                         Au - Gold                           Au
+#&gt; 91       70                         Au - Gold                           Au
+#&gt; 92       71                         Au - Gold                           Au
+#&gt; 93       72                         Au - Gold                           Au
+#&gt; 94       73                         Au - Gold                           Au
+#&gt; 95       74                         Au - Gold                           Au
+#&gt; 96       75                         Au - Gold                           Au
+#&gt; 97       76                         Au - Gold                           Au
+#&gt; 98       77                         Au - Gold                           Au
+#&gt; 99       78                         Au - Gold                           Au
+#&gt; 101      79                         Au - Gold                           Au
+#&gt; 102      80                         Au - Gold                           Au
+#&gt; 103      81                         Au - Gold                           Au
+#&gt; 147     115               Amorphous thin film                            C
+#&gt; 148     116               Amorphous thin film                            C
+#&gt; 303     237        H, D - Hydrogen, Deuterium                           H2
+#&gt; 304     238        H, D - Hydrogen, Deuterium                           H2
+#&gt; 305     239        H, D - Hydrogen, Deuterium                           H2
+#&gt; 306     240        H, D - Hydrogen, Deuterium                           D2
+#&gt; 314     245                      Hg - Mercury                           Hg
+#&gt; 370     289                    Mg - Magnesium                           Mg
+#&gt; 371     290                    Mg - Magnesium                           Mg
+#&gt; 373     291                    Mn - Manganese                           Mn
+#&gt; 374     292                    Mn - Manganese                           Mn
+#&gt; 391     305         N - Nitrogen and nitrides                           N2
+#&gt; 392     306         N - Nitrogen and nitrides                           N2
+#&gt; 393     307         N - Nitrogen and nitrides                           N2
+#&gt; 394     308         N - Nitrogen and nitrides                          AlN
+#&gt; 395     309         N - Nitrogen and nitrides                          AlN
+#&gt; 396     310         N - Nitrogen and nitrides                          AlN
+#&gt; 398     311         N - Nitrogen and nitrides                          GaN
+#&gt; 399     312         N - Nitrogen and nitrides                          GaN
+#&gt; 400     313         N - Nitrogen and nitrides                          GaN
+#&gt; 401     314         N - Nitrogen and nitrides                          GaN
+#&gt; 403     315         N - Nitrogen and nitrides                          GaN
+#&gt; 404     316         N - Nitrogen and nitrides                          NH3
+#&gt; 405     317         N - Nitrogen and nitrides                        Si3N4
+#&gt; 406     318         N - Nitrogen and nitrides                        Si3N4
+#&gt; 407     319         N - Nitrogen and nitrides                        Si3N4
+#&gt; 408     320         N - Nitrogen and nitrides                          TiN
+#&gt; 409     321         N - Nitrogen and nitrides                           VN
+#&gt; 441     345             O - Oxygen and oxides                           O2
+#&gt; 442     346             O - Oxygen and oxides                           O2
+#&gt; 664     523                  Sb - Antimonides                         AlSb
+#&gt; 666     524                  Sb - Antimonides                         AlSb
+#&gt; 667     525                  Sb - Antimonides                         AlSb
+#&gt; 669     526                  Sb - Antimonides                         GaSb
+#&gt; 670     527                  Sb - Antimonides                         GaSb
+#&gt; 672     528                  Sb - Antimonides                         GaSb
+#&gt; 673     529                  Sb - Antimonides                         GaSb
+#&gt; 675     530                  Sb - Antimonides                         InSb
+#&gt; 677     531                  Sb - Antimonides                         InSb
+#&gt; 678     532                  Sb - Antimonides                         InSb
+#&gt; 753     594         Amorphous silicon (α-Si)                           Si
+#&gt; 754     595         Amorphous silicon (α-Si)                    Bi12SiO20
+#&gt; 832     652       W - Tungsten and tungstates                            W
+#&gt; 833     653       W - Tungsten and tungstates                            W
+#&gt; 834     654       W - Tungsten and tungstates                            W
+#&gt; 836     655       W - Tungsten and tungstates                            W
+#&gt; 837     656       W - Tungsten and tungstates                            W
+#&gt; 838     657       W - Tungsten and tungstates                            W
+#&gt; 839     658       W - Tungsten and tungstates                        CaWO4
+#&gt; 840     659       W - Tungsten and tungstates                        CaWO4
+#&gt; 901     706                           Alkynes                    acetylene
+#&gt; 903     707                           Alkenes                     ethylene
+#&gt; 905     708                          Alcohols                     methanol
+#&gt; 906     709                          Alcohols                     methanol
+#&gt; 907     710                          Alcohols                     methanol
+#&gt; 908     711                          Alcohols                      ethanol
+#&gt; 909     712                          Alcohols                      ethanol
+#&gt; 910     713                          Alcohols                      ethanol
+#&gt; 911     714                          Alcohols                      ethanol
+#&gt; 912     715                          Alcohols                      ethanol
+#&gt; 913     716                          Alcohols                     propanol
+#&gt; 914     717                          Alcohols                     propanol
+#&gt; 915     718                          Alcohols                     propanol
+#&gt; 916     719                          Alcohols                     propanol
+#&gt; 917     720                          Alcohols                      butanol
+#&gt; 918     721                          Alcohols                      butanol
+#&gt; 919     722                          Alcohols                      butanol
+#&gt; 920     723                          Alcohols                     pentanol
+#&gt; 921     724                          Alcohols                     pentanol
+#&gt; 999     788           Popular optical glasses                          BK7
+#&gt; 1000    789           Popular optical glasses                          BK7
+#&gt; 1001    790           Popular optical glasses                          BK7
+#&gt; 1002    791           Popular optical glasses                          BK7
+#&gt; 1003    792           Popular optical glasses                          BK7
+#&gt; 1004    793           Popular optical glasses                          BK7
+#&gt; 1005    794           Popular optical glasses                          BK7
+#&gt; 1006    795           Popular optical glasses                        BAF10
+#&gt; 1007    796           Popular optical glasses                        BAF10
+#&gt; 1008    797           Popular optical glasses                        BAF10
+#&gt; 1009    798           Popular optical glasses                        BAF10
+#&gt; 1010    799           Popular optical glasses                        BAF10
+#&gt; 1011    800           Popular optical glasses                         BAK1
+#&gt; 1012    801           Popular optical glasses                         BAK1
+#&gt; 1013    802           Popular optical glasses                         BAK1
+#&gt; 1014    803           Popular optical glasses                         BAK1
+#&gt; 1015    804           Popular optical glasses                        FK51A
+#&gt; 1016    805           Popular optical glasses                        LASF9
+#&gt; 1017    806           Popular optical glasses                          SF5
+#&gt; 1018    807           Popular optical glasses                          SF5
+#&gt; 1019    808           Popular optical glasses                          SF5
+#&gt; 1020    809           Popular optical glasses                          SF5
+#&gt; 1021    810           Popular optical glasses                         SF10
+#&gt; 1022    811           Popular optical glasses                         SF10
+#&gt; 1023    812           Popular optical glasses                         SF10
+#&gt; 1024    813           Popular optical glasses                         SF10
+#&gt; 1025    814           Popular optical glasses                         SF11
+#&gt; 1026    815           Popular optical glasses                         SF11
+#&gt; 1027    816           Popular optical glasses                         SF11
+#&gt; 1028    817           Popular optical glasses                         SF11
+#&gt; 1030    818            Multiple purpose glass                 fused_silica
+#&gt; 1031    819            Multiple purpose glass                    soda-lime
+#&gt; 1032    820            Multiple purpose glass                    soda-lime
+#&gt; 1033    821            Multiple purpose glass                    soda-lime
+#&gt; 1034    822            Multiple purpose glass                    soda-lime
+#&gt; 1035    823            Multiple purpose glass                    soda-lime
+#&gt; 1036    824            Multiple purpose glass                    soda-lime
+#&gt; 1037    825            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1038    826            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1039    827            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1040    828            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1041    829            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1042    830            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1043    831            Multiple purpose glass          SCHOTT-multipurpose
+#&gt; 1061    845                     Display glass              CORNING-display
+#&gt; 1063    846                  Ophthalmic glass              BARBERINI-crown
+#&gt; 1064    847                  Ophthalmic glass              BARBERINI-crown
+#&gt; 1065    848                  Ophthalmic glass              BARBERINI-crown
+#&gt; 1066    849                  Ophthalmic glass         BARBERINI-high-index
+#&gt; 1067    850                  Ophthalmic glass         BARBERINI-high-index
+#&gt; 1068    851                  Ophthalmic glass         BARBERINI-high-index
+#&gt; 1069    852                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1070    853                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1071    854                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1072    855                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1073    856                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1074    857                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1075    858                  Ophthalmic glass       BARBERINI-photochromic
+#&gt; 1076    859                  Ophthalmic glass             BARBERINI-moulds
+#&gt; 1077    860                  Ophthalmic glass             BARBERINI-moulds
+#&gt; 1078    861                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1079    862                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1080    863                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1081    864                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1082    865                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1083    866                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1084    867                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1085    868                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1086    869                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1087    870                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1088    871                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1089    872                  Ophthalmic glass     BARBERINI-sun-protection
+#&gt; 1091    873                    Infrared glass                        AMTIR
+#&gt; 1092    874                    Infrared glass                        AMTIR
+#&gt; 1093    875                    Infrared glass                        AMTIR
+#&gt; 1094    876                    Infrared glass                        AMTIR
+#&gt; 1095    877                    Infrared glass                    VITRON-IG
+#&gt; 1096    878                    Infrared glass                    VITRON-IG
+#&gt; 1097    879                    Infrared glass                    VITRON-IG
+#&gt; 1098    880                    Infrared glass                    VITRON-IG
+#&gt; 1099    881                    Infrared glass                    VITRON-IG
+#&gt; 1100    882                    Infrared glass                   SCHOTT-IRG
+#&gt; 1101    883                    Infrared glass                   SCHOTT-IRG
+#&gt; 1102    884                    Infrared glass                   SCHOTT-IRG
+#&gt; 1103    885                    Infrared glass                   SCHOTT-IRG
+#&gt; 1104    886                    Infrared glass                   SCHOTT-IRG
+#&gt; 1105    887                    Infrared glass                 LightPath-BD
+#&gt; 1107    888            Optical glass - SCHOTT                     SCHOTT-K
+#&gt; 1108    889            Optical glass - SCHOTT                     SCHOTT-K
+#&gt; 1109    890            Optical glass - SCHOTT                     SCHOTT-K
+#&gt; 1110    891            Optical glass - SCHOTT                     SCHOTT-K
+#&gt; 1111    892            Optical glass - SCHOTT                     SCHOTT-K
+#&gt; 1112    893            Optical glass - SCHOTT                     SCHOTT-K
+#&gt; 1113    894            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1114    895            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1115    896            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1116    897            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1117    898            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1118    899            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1119    900            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1120    901            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1121    902            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1122    903            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1123    904            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1124    905            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1125    906            Optical glass - SCHOTT                    SCHOTT-SK
+#&gt; 1126    907            Optical glass - SCHOTT                   SCHOTT-SSK
+#&gt; 1127    908            Optical glass - SCHOTT                   SCHOTT-SSK
+#&gt; 1128    909            Optical glass - SCHOTT                   SCHOTT-SSK
+#&gt; 1129    910            Optical glass - SCHOTT                    SCHOTT-BK
+#&gt; 1130    911            Optical glass - SCHOTT                    SCHOTT-BK
+#&gt; 1131    912            Optical glass - SCHOTT                    SCHOTT-BK
+#&gt; 1132    913            Optical glass - SCHOTT                    SCHOTT-BK
+#&gt; 1133    914            Optical glass - SCHOTT                    SCHOTT-BK
+#&gt; 1134    915            Optical glass - SCHOTT                    SCHOTT-BK
+#&gt; 1135    916            Optical glass - SCHOTT                   SCHOTT-BaK
+#&gt; 1136    917            Optical glass - SCHOTT                   SCHOTT-BaK
+#&gt;                    PAGE
+#&gt; 3               Johnson
+#&gt; 4                  Yang
+#&gt; 5                McPeak
+#&gt; 6                 Babar
+#&gt; 7                    Wu
+#&gt; 8                Werner
+#&gt; 9           Stahrenberg
+#&gt; 10                Windt
+#&gt; 11             Hagemann
+#&gt; 13           Ciesielski
+#&gt; 14        Ciesielski-Ge
+#&gt; 15        Ciesielski-Ni
+#&gt; 17             Rakic-BB
+#&gt; 18             Rakic-LD
+#&gt; 19           Werner-DFT
+#&gt; 22                Rakic
+#&gt; 23               McPeak
+#&gt; 24           Larruquert
+#&gt; 25                Ordal
+#&gt; 26             Hagemann
+#&gt; 27            Mathewson
+#&gt; 29             Rakic-BB
+#&gt; 30             Rakic-LD
+#&gt; 31                Tropf
+#&gt; 32               Zelmon
+#&gt; 56                 Fern
+#&gt; 58                Rakic
+#&gt; 60               Aspnes
+#&gt; 61               Skauli
+#&gt; 62             Jellison
+#&gt; 63              Kachare
+#&gt; 65               Adachi
+#&gt; 66                Rakic
+#&gt; 67                Ozaki
+#&gt; 69               Aspnes
+#&gt; 70              Lorimor
+#&gt; 72               Adachi
+#&gt; 73               Boyd-o
+#&gt; 74               Boyd-e
+#&gt; 75               Boyd-o
+#&gt; 76               Boyd-e
+#&gt; 79              Johnson
+#&gt; 80               McPeak
+#&gt; 81                Babar
+#&gt; 82             Olmon-ev
+#&gt; 83             Olmon-sc
+#&gt; 84             Olmon-ts
+#&gt; 85               Werner
+#&gt; 86                Windt
+#&gt; 87                Ordal
+#&gt; 88             Hagemann
+#&gt; 89           Hagemann-2
+#&gt; 91      Yakubovsky-25nm
+#&gt; 92      Yakubovsky-53nm
+#&gt; 93     Yakubovsky-117nm
+#&gt; 94           Ciesielski
+#&gt; 95        Ciesielski-Ge
+#&gt; 96    Lemarchand-3.96nm
+#&gt; 97    Lemarchand-4.62nm
+#&gt; 98    Lemarchand-5.77nm
+#&gt; 99    Lemarchand-11.7nm
+#&gt; 101            Rakic-BB
+#&gt; 102            Rakic-LD
+#&gt; 103          Werner-DFT
+#&gt; 147          Larruquert
+#&gt; 148            Hagemann
+#&gt; 303               Smith
+#&gt; 304                Peck
+#&gt; 305                Koch
+#&gt; 306               Weber
+#&gt; 314             Inagaki
+#&gt; 370            Hagemann
+#&gt; 371       Vidal-Dasilva
+#&gt; 373             Johnson
+#&gt; 374              Querry
+#&gt; 391             Peck-0C
+#&gt; 392            Peck-15C
+#&gt; 393           Griesmann
+#&gt; 394            Kischkat
+#&gt; 395          Pastrnak-o
+#&gt; 396          Pastrnak-e
+#&gt; 398            Barker-o
+#&gt; 399            Barker-e
+#&gt; 400        Lin-wurtzite
+#&gt; 401      Lin-zincblende
+#&gt; 403           Kawashima
+#&gt; 404         Cuthbertson
+#&gt; 405                Luke
+#&gt; 406            Kischkat
+#&gt; 407             Philipp
+#&gt; 408             Pfluger
+#&gt; 409             Pfluger
+#&gt; 441               Smith
+#&gt; 442               Zhang
+#&gt; 664             Zollner
+#&gt; 666              Adachi
+#&gt; 667            Djurisic
+#&gt; 669              Aspnes
+#&gt; 670             Ferrini
+#&gt; 672              Adachi
+#&gt; 673            Djurisic
+#&gt; 675              Aspnes
+#&gt; 677              Adachi
+#&gt; 678            Djurisic
+#&gt; 753              Pierce
+#&gt; 754          Gospodinov
+#&gt; 832               Ordal
+#&gt; 833              Werner
+#&gt; 834               Windt
+#&gt; 836            Rakic-BB
+#&gt; 837            Rakic-LD
+#&gt; 838          Werner-DFT
+#&gt; 839              Bond-o
+#&gt; 840              Bond-e
+#&gt; 901               Loria
+#&gt; 903               Loria
+#&gt; 905           El-Kashef
+#&gt; 906          Moutzouris
+#&gt; 907               Kozma
+#&gt; 908              Rheims
+#&gt; 909                Sani
+#&gt; 910        Sani-formula
+#&gt; 911           Kedenburg
+#&gt; 912               Kozma
+#&gt; 913               Kozma
+#&gt; 914                Sani
+#&gt; 915        Sani-formula
+#&gt; 916          Moutzouris
+#&gt; 917           El-Kashef
+#&gt; 918        Moutzouris-n
+#&gt; 919      Moutzouris-iso
+#&gt; 920   Moutzouris-normal
+#&gt; 921      Moutzouris-iso
+#&gt; 999              SCHOTT
+#&gt; 1000              OHARA
+#&gt; 1001             HIKARI
+#&gt; 1002               CDGM
+#&gt; 1003               HOYA
+#&gt; 1004             SUMITA
+#&gt; 1005               LZOS
+#&gt; 1006             SCHOTT
+#&gt; 1007              OHARA
+#&gt; 1008             HIKARI
+#&gt; 1009               CDGM
+#&gt; 1010               HOYA
+#&gt; 1011             SCHOTT
+#&gt; 1012              OHARA
+#&gt; 1013             HIKARI
+#&gt; 1014               CDGM
+#&gt; 1015             SCHOTT
+#&gt; 1016             SCHOTT
+#&gt; 1017             SCHOTT
+#&gt; 1018             HIKARI
+#&gt; 1019               CDGM
+#&gt; 1020               HOYA
+#&gt; 1021             SCHOTT
+#&gt; 1022             HIKARI
+#&gt; 1023               CDGM
+#&gt; 1024               HOYA
+#&gt; 1025             SCHOTT
+#&gt; 1026             HIKARI
+#&gt; 1027               CDGM
+#&gt; 1028             SUMITA
+#&gt; 1030           Malitson
+#&gt; 1031        Rubin-clear
+#&gt; 1032       Rubin-bronze
+#&gt; 1033         Rubin-grey
+#&gt; 1034        Rubin-green
+#&gt; 1035      Rubin-lowiron
+#&gt; 1036           Rubin-IR
+#&gt; 1037            ZERODUR
+#&gt; 1038               B270
+#&gt; 1039            AF32ECO
+#&gt; 1040           D263TECO
+#&gt; 1041        BOROFLOAT33
+#&gt; 1042         LITHOSIL-Q
+#&gt; 1043      LITHOTEC-CAF2
+#&gt; 1061            EagleXG
+#&gt; 1063              D0290
+#&gt; 1064              D0391
+#&gt; 1065              D0891
+#&gt; 1066              D0082
+#&gt; 1067              D0785
+#&gt; 1068              D0888
+#&gt; 1069              D0587
+#&gt; 1070              D0687
+#&gt; 1071              D1125
+#&gt; 1072        D1426-D1526
+#&gt; 1073              D6625
+#&gt; 1074        D6526-D6626
+#&gt; 1075        D6726-D6826
+#&gt; 1076              D0991
+#&gt; 1077              D0191
+#&gt; 1078              D1214
+#&gt; 1079              D1219
+#&gt; 1080              D1230
+#&gt; 1081            D1420_1
+#&gt; 1082              D1511
+#&gt; 1083              D1520
+#&gt; 1084              D1616
+#&gt; 1085              D4150
+#&gt; 1086            D5336_1
+#&gt; 1087              D6117
+#&gt; 1088              D6420
+#&gt; 1089              D9148
+#&gt; 1091            AMTIR-1
+#&gt; 1092            AMTIR-2
+#&gt; 1093            AMTIR-3
+#&gt; 1094            AMTIR-6
+#&gt; 1095                IG2
+#&gt; 1096                IG3
+#&gt; 1097                IG4
+#&gt; 1098                IG5
+#&gt; 1099                IG6
+#&gt; 1100              IRG22
+#&gt; 1101              IRG23
+#&gt; 1102              IRG24
+#&gt; 1103              IRG25
+#&gt; 1104              IRG26
+#&gt; 1105               BD-2
+#&gt; 1107                 K7
+#&gt; 1108                K10
+#&gt; 1109               N-K5
+#&gt; 1110              K5G20
+#&gt; 1111              N-ZK7
+#&gt; 1112             N-ZK7A
+#&gt; 1113              N-SK2
+#&gt; 1114            N-SK2HT
+#&gt; 1115              N-SK4
+#&gt; 1116              N-SK5
+#&gt; 1117             N-SK10
+#&gt; 1118             N-SK11
+#&gt; 1119             N-SK14
+#&gt; 1120             N-SK15
+#&gt; 1121             N-SK16
+#&gt; 1122             P-SK57
+#&gt; 1123           P-SK57Q1
+#&gt; 1124            P-SK58A
+#&gt; 1125             P-SK60
+#&gt; 1126             N-SSK2
+#&gt; 1127             N-SSK5
+#&gt; 1128             N-SSK8
+#&gt; 1129             BK7G18
+#&gt; 1130              N-BK7
+#&gt; 1131            N-BK7HT
+#&gt; 1132           N-BK7HTi
+#&gt; 1133             N-BK10
+#&gt; 1134              P-BK7
+#&gt; 1135             N-BAK1
+#&gt; 1136             N-BAK2
+#&gt;  [ reached getOption("max.print") -- omitted 1614 rows ]</div><div class='input'>
+<span class='no'>Ag_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='rindex.get.html'>rindex.get</a></span>(<span class='fl'>0</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:/Users/Tom/Desktop/rindex/inst/extdata/refractiveindex.info-database-master/database/data': Permission denied</span></div><div class='output co'>#&gt; <span class='error'>Error in file(file, "rt", encoding = fileEncoding): cannot open the connection</span></div><div class='input'><span class='no'>Ag</span> <span class='kw'>&lt;-</span> <span class='fu'>rindex.function</span>(<span class='fl'>0</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file 'C:/Users/Tom/Desktop/rindex/inst/extdata/refractiveindex.info-database-master/database/data': Permission denied</span></div><div class='output co'>#&gt; <span class='error'>Error in file(file, "rt", encoding = fileEncoding): cannot open the connection</span></div><div class='input'>
 <span class='no'>wavelengths</span> <span class='kw'>&lt;-</span> <span class='fu'>seq</span>(<span class='fl'>210</span>,<span class='fl'>12300</span>,, <span class='fl'>1000</span>) * <span class='fl'>1e-9</span>
 
-<span class='fu'>plot</span>(<span class='no'>Ag_data</span>$<span class='no'>wavelength</span>, <span class='no'>Ag_data</span>$<span class='no'>n</span>, <span class='kw'>log</span><span class='kw'>=</span><span class='st'>"x"</span>,  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"wavelength (m) - log scale"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"n"</span>)</div><div class='input'><span class='fu'>lines</span>(<span class='no'>wavelengths</span>, <span class='fu'>Re</span>(<span class='fu'>Ag</span>(<span class='no'>wavelengths</span>)), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='rindex.function-6.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='fu'>plot</span>(<span class='no'>Ag_data</span>$<span class='no'>wavelength</span>, <span class='no'>Ag_data</span>$<span class='no'>n</span>, <span class='kw'>log</span><span class='kw'>=</span><span class='st'>"x"</span>,  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"wavelength (m) - log scale"</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"n"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(Ag_data$wavelength, Ag_data$n, log = "x", xlab = "wavelength (m) - log scale",     ylab = "n"): object 'Ag_data' not found</span></div><div class='input'><span class='fu'>lines</span>(<span class='no'>wavelengths</span>, <span class='fu'>Re</span>(<span class='fu'>Ag</span>(<span class='no'>wavelengths</span>)), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in Ag(wavelengths): could not find function "Ag"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

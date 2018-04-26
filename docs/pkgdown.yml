@@ -1,0 +1,6 @@
+urls:
+  reference: http://github.com/tjconstant/rindex//reference
+  article: http://github.com/tjconstant/rindex//articles
+articles:
+  use-with-mlfilms: use-with-mlfilms.html
+

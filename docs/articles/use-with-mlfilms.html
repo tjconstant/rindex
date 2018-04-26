@@ -72,7 +72,7 @@
       <h1>Compatability with mlfilms package</h1>
                         <h4 class="author">Tom Constant</h4>
             
-            <h4 class="date">2018-04-25</h4>
+            <h4 class="date">2018-04-26</h4>
           </div>
 
     
@@ -82,42 +82,35 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p>The <code>rindex</code> package is designed to follow the same conventions as the <code>mlfilms</code> package for ease of interoperability. The <code>mlfilms</code> package calculates the optical response of a material fora stack of thin films.</p>
-<p>As an example, here we import gold’s wavelength-dependant refractive index to get the expected reflection from a thin gold film on a prism</p>
+<p>As an example, here we import silver’s wavelength-dependant refractive index to get the expected reflection from a thin silver film on a prism</p>
 </div>
-<div id="a-thin-gold-film" class="section level2">
+<div id="a-thin-silver-film" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-thin-gold-film" class="anchor"></a>A Thin Gold Film</h2>
-<p>First, we search for a gold refractive index set in the database, and in this example choose the reported values of gold from Johnson &amp; Christy to create a refractive index function,</p>
+<a href="#a-thin-silver-film" class="anchor"></a>A Thin Silver Film</h2>
+<p>First, we search for a silver refractive index set in the database, and in this example choose the reported values of silver from Johnson &amp; Christy to create a refractive index function,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rindex)
 <span class="kw">head</span>(<span class="kw"><a href="../reference/rindex.search.html">rindex.search</a></span>(<span class="st">"Ag"</span>)) <span class="co"># using head() here just to keep vignette neat.</span>
-<span class="co">#&gt;   pageid shelf book        page hasrefractive hasextinction rangeMin (um)</span>
-<span class="co">#&gt; 1      0  main   Ag       Rakic             1             1    0.20660000</span>
-<span class="co">#&gt; 2      1  main   Ag      McPeak             1             1    0.30000000</span>
-<span class="co">#&gt; 3      2  main   Ag Stahrenberg             1             1    0.12782000</span>
-<span class="co">#&gt; 4      3  main   Ag       Babar             1             1    0.20660000</span>
-<span class="co">#&gt; 5      4  main   Ag    Hagemann             1             1    0.00000248</span>
-<span class="co">#&gt; 6      5  main   Ag     Johnson             1             1    0.18790000</span>
-<span class="co">#&gt;   rangeMax (um) points</span>
-<span class="co">#&gt; 1      12.40000    200</span>
-<span class="co">#&gt; 2       1.70000    141</span>
-<span class="co">#&gt; 3       0.49594    361</span>
-<span class="co">#&gt; 4      12.40000     69</span>
-<span class="co">#&gt; 5     248.00000    148</span>
-<span class="co">#&gt; 6       1.93700     49</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gold &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rindex.function.html">rindex.function</a></span>(<span class="dv">5</span>)
+<span class="co">#&gt;   pageid     DIVIDER BOOK    PAGE</span>
+<span class="co">#&gt; 3      1 Ag - Silver   Ag Johnson</span>
+<span class="co">#&gt; 4      2 Ag - Silver   Ag    Yang</span>
+<span class="co">#&gt; 5      3 Ag - Silver   Ag  McPeak</span>
+<span class="co">#&gt; 6      4 Ag - Silver   Ag   Babar</span>
+<span class="co">#&gt; 7      5 Ag - Silver   Ag      Wu</span>
+<span class="co">#&gt; 8      6 Ag - Silver   Ag  Werner</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">silver &lt;-<span class="st"> </span><span class="kw"><a href="../reference/rindex.function.html">rindex.function</a></span>(<span class="dv">1</span>)
 <span class="co">#&gt; Material: Ag</span>
-<span class="co">#&gt; Source: Johnson</span></code></pre></div>
-<p>This creates a refractive index function <code>gold()</code>. This function accepts one parameter, the wavelength(s) in meters, and returns the complex refractive index. For example, at the HeNe wavelength of 633 nm, the refractive index of gold is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gold</span>(<span class="fl">633e-9</span>)
+<span class="co">#&gt; Reference: P. B. Johnson and R. W. Christy. Optical constants of the noble metals, &lt;a href="https://doi.org/10.1103/PhysRevB.6.4370"&gt;&lt;i&gt;Phys. Rev. B&lt;/i&gt; &lt;b&gt;6&lt;/b&gt;, 4370-4379 (1972)&lt;/a&gt;</span></code></pre></div>
+<p>This creates a refractive index function <code>silver()</code>. This function accepts one parameter, the wavelength(s) in meters, and returns the complex refractive index. For example, at the HeNe wavelength of 633 nm, the refractive index of silver is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">silver</span>(<span class="fl">633e-9</span>)
 <span class="co">#&gt; [1] 0.059135+4.28104i</span></code></pre></div>
 </div>
 <div id="angular-optical-response" class="section level2">
 <h2 class="hasAnchor">
 <a href="#angular-optical-response" class="anchor"></a>Angular Optical Response</h2>
-<p>Here we define the stack to contain a single layer of gold, with a thickness of 40 nm. We then calculate the optical response at a fixed wavelength (defaults to 633 nm) using the <code>mlfilms</code> package.</p>
+<p>Here we define the stack to contain a single layer of silver, with a thickness of 40 nm. We then calculate the optical response at a fixed wavelength (defaults to 633 nm) using the <code>mlfilms</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mlfilms)
 
-stack &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">index =</span> gold, <span class="dt">thickness =</span> <span class="fl">40e-9</span>)
+stack &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">index =</span> silver, <span class="dt">thickness =</span> <span class="fl">40e-9</span>)
 
 angle_response &lt;-<span class="st"> </span><span class="kw">angle_scan</span>(stack, <span class="dt">incident_medium.index =</span> <span class="fl">1.5</span>)
 <span class="co">#&gt; Warning in check_repetitions(layers): Number of repetitions not specified,</span>
@@ -129,7 +122,7 @@ angle_response &lt;-<span class="st"> </span><span class="kw">angle_scan</span>(
 <div id="full-optical-response" class="section level2">
 <h2 class="hasAnchor">
 <a href="#full-optical-response" class="anchor"></a>Full Optical Response</h2>
-<p>To see the dispersive nature of the surface plasmon (due to the wavelegth-dependant refractive index of gold), we can calculate the full response using <code><a href="http://www.rdocumentation.org/packages/mlfilms/topics/dispersion_scan">mlfilms::dispersion_scan()</a></code> of the same stack.</p>
+<p>To see the dispersive nature of the surface plasmon (due to the wavelegth-dependant refractive index of silver), we can calculate the full response using <code><a href="http://www.rdocumentation.org/packages/mlfilms/topics/dispersion_scan">mlfilms::dispersion_scan()</a></code> of the same stack.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 optical_response &lt;-<span class="st"> </span><span class="kw">dispersion_scan</span>(stack, <span class="dt">incident_medium.index =</span> <span class="fl">1.5</span>, <span class="dt">show.progress =</span> F)
 <span class="co">#&gt; Warning in check_repetitions(layers): Number of repetitions not specified,</span>
@@ -150,7 +143,7 @@ optical_response &lt;-<span class="st"> </span><span class="kw">dispersion_scan<
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#a-thin-gold-film">A Thin Gold Film</a></li>
+      <li><a href="#a-thin-silver-film">A Thin Silver Film</a></li>
       <li><a href="#angular-optical-response">Angular Optical Response</a></li>
       <li><a href="#full-optical-response">Full Optical Response</a></li>
       </ul>
