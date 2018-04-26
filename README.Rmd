@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 # rindex
 
-The goal of rindex is to provide access to the fantastic refractive index database provided by http://refractiveindex.info inside R. All user-provided wavelengths must be given in meters.
+All user-provided wavelengths must be given in meters.
 
 ## Installation
 
@@ -32,37 +32,36 @@ devtools::install_github("tjconstant/rindex")
 ```{r search}
 library(rindex)
 
-head(rindex.search("Ag"))
+rindex.search("silver")
 ```
 
 ### Retreiving a dataset
 
 Retrieving a dataset is done using the `rindex.get()` function. You must specify the unique `pageid` as found in the search table.
 
-```{r get}
-head(rindex.get(pageid = 1))
+```{r get, R.options=list(max.print = 10)}
+rindex.get(pageid = 1)
 ```
 
 ### Interpolation Functions
 
-You can generate a spline-fit for any dataset using `rindex.function()`. For example, to get the interpolated refractive index of gold at 633 nm,
+You can generate a spline-fit for any dataset using `rindex.function()`. For example, to get the interpolated refractive index of silver at 633 nm,
 
 ```{r}
-Ag <- rindex.function(0)
+Ag <- rindex.function(1)
 Ag(633e-9)
 ```
 
 A comparison of dataset to spline-function is shown below.
 
 ```{r}
-Ag_data <- rindex.get(0)
-wavelengths <- seq(210,12300,, 1000) * 1e-9
+Ag_data <- rindex.get(1)
+wavelengths <- seq(200,1900,, 100) * 1e-9
 
 plot(Ag_data$wavelength, Ag_data$n, 
-     log="x",  
      xlab = "wavelength (m) - log scale", 
      ylab = "n",
-     main = "Refractive Index of Gold (Real part)")
+     main = "Refractive Index of Silver (Real part)")
 lines(wavelengths, Re(Ag(wavelengths)), col = 2, lwd = 2)
 
 ```

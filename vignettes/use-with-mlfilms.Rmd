@@ -20,11 +20,11 @@ knitr::opts_chunk$set(
 
 The `rindex` package is designed to follow the same conventions as the `mlfilms` package for ease of interoperability. The `mlfilms` package calculates the optical response of a material fora stack of thin films. 
 
-As an example, here we import gold's wavelength-dependant refractive index to get the expected reflection from a thin gold film on a prism
+As an example, here we import silver's wavelength-dependant refractive index to get the expected reflection from a thin silver film on a prism
 
-## A Thin Gold Film
+## A Thin Silver Film
 
-First, we search for a gold refractive index set in the database, and in this example choose the reported values of gold from Johnson & Christy to create a refractive index function,
+First, we search for a silver refractive index set in the database, and in this example choose the reported values of silver from Johnson & Christy to create a refractive index function,
 
 ```{r}
 library(rindex)
@@ -32,23 +32,23 @@ head(rindex.search("Ag")) # using head() here just to keep vignette neat.
 ```
 
 ```{r}
-gold <- rindex.function(5)
+silver <- rindex.function(1)
 ```
 
-This creates a refractive index function `gold()`. This function accepts one parameter, the wavelength(s) in meters, and returns the complex refractive index. For example, at the HeNe wavelength of 633 nm, the refractive index of gold is:
+This creates a refractive index function `silver()`. This function accepts one parameter, the wavelength(s) in meters, and returns the complex refractive index. For example, at the HeNe wavelength of 633 nm, the refractive index of silver is:
 
 ```{r}
-gold(633e-9)
+silver(633e-9)
 ```
 
 ## Angular Optical Response
 
-Here we define the stack to contain a single layer of gold, with a thickness of 40 nm. We then calculate the optical response at a fixed wavelength (defaults to 633 nm) using the `mlfilms` package.
+Here we define the stack to contain a single layer of silver, with a thickness of 40 nm. We then calculate the optical response at a fixed wavelength (defaults to 633 nm) using the `mlfilms` package.
 
 ```{r}
 library(mlfilms)
 
-stack <- list(index = gold, thickness = 40e-9)
+stack <- list(index = silver, thickness = 40e-9)
 
 angle_response <- angle_scan(stack, incident_medium.index = 1.5)
 ```
@@ -61,7 +61,7 @@ plot(angle_response$angle, angle_response$Reflection, type='l')
 
 ## Full Optical Response
 
-To see the dispersive nature of the surface plasmon (due to the wavelegth-dependant refractive index of gold), we can calculate the full response using `mlfilms::dispersion_scan()` of the same stack.
+To see the dispersive nature of the surface plasmon (due to the wavelegth-dependant refractive index of silver), we can calculate the full response using `mlfilms::dispersion_scan()` of the same stack.
 
 ```{r}
 
