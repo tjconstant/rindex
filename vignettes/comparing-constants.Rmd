@@ -1,0 +1,55 @@
+---
+title: "Comparing Optical Constants"
+author: "Tom Constant"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = F, message = F,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `rindex` package allows fast comparison of refracitve index data between multiple references. A few examples of how to achieve this are shown below.
+
+## Caesium
+
+```{r}
+library(rindex)
+library(dplyr)
+library(ggplot2)
+
+Cs <- rindex.search("Caesium")$pageid
+
+nk <- 
+lapply(Cs, rindex.get) %>%
+  bind_rows(.id="Reference")
+
+nk %>%
+  ggplot(aes(x = `wavelength (m)`, y = n, colour = Reference)) + 
+  geom_line() + 
+  geom_point() + theme_bw()
+
+```
+
+## Gold
+
+```{r}
+Au <- rindex.search("Gold")$pageid
+
+nk <- 
+  lapply(Au, rindex.get) %>%
+  bind_rows(.id="Reference")
+
+nk %>%
+  ggplot(aes(x = `wavelength (m)`, y = n, colour = Reference)) + 
+  geom_point() + 
+  theme_bw() + 
+  xlim(0,800e-9) + ylim(0,2)
+```
